@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBAIpjTPXueRWEW_L4yHnCM20sQO_Vu6L8",
-  authDomain: "bike-zone-website.firebaseapp.com",
-  projectId: "bike-zone-website",
-  storageBucket: "bike-zone-website.appspot.com",
-  messagingSenderId: "1071612851150",
-  appId: "1:1071612851150:web:cb8dffd00d52c08900f19f",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
