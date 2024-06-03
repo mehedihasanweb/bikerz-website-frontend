@@ -1,4 +1,12 @@
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
+
 const UpdateProfile = () => {
+  const user = useLoaderData();
+  console.log(user);
+
+  const [name, setName] = useState(user?.name);
   const handleUpdateProfile = (e) => {
     e.preventDefault();
 
@@ -8,6 +16,22 @@ const UpdateProfile = () => {
     const mobile = form.mobile.value;
 
     console.log(name, age, mobile);
+
+    const updatedInfo = { age, mobile, name };
+
+    fetch(`http://localhost:5000/user/${user?._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(updatedInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        form.reset();
+        toast.success("Profile Updated Done");
+      });
   };
 
   return (
@@ -20,6 +44,8 @@ const UpdateProfile = () => {
               <input
                 type="text"
                 name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Name"
                 className="bg-gray-100 p-4 w-full lg:w-[350px] border border-black rounded-lg"
               />
@@ -29,6 +55,7 @@ const UpdateProfile = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
+                value={user?.email}
                 disabled
                 className="bg-gray-100 p-4 w-full lg:w-[350px] border border-black rounded-lg"
               />

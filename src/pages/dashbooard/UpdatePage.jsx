@@ -5,7 +5,7 @@ import { useLoaderData } from "react-router-dom";
 const UpdatePage = () => {
   const data = useLoaderData();
 
-  const { id, name, currency, description, image_url, price } = data;
+  const { _id, name, currency, description, image_url, price } = data;
 
   const [title, setTitle] = useState(name);
   const [brand, setBrand] = useState(currency);
@@ -23,10 +23,16 @@ const UpdatePage = () => {
     const description = form.description.value;
     const image_url = form.image_url.value;
 
-    const updateInfo = { name, currency, price, description, image_url };
+    const updateInfo = {
+      name,
+      currency,
+      price,
+      description,
+      image_url,
+    };
     console.log(updateInfo);
 
-    fetch(`http://localhost:3000/bikes/${id}`, {
+    fetch(`http://localhost:5000/bikes/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -36,6 +42,7 @@ const UpdatePage = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        form.reset();
         toast.success("Successfully Updated");
       });
   };

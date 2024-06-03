@@ -1,10 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/socialLogin/SocialLogin";
 import useAuth from "../hooks/useAuth";
+import { useEffect } from "react";
 
 const Login = () => {
-  const { signIn } = useAuth();
+  const { user, signIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.from?.state?.pathname || "/";
+
   const handleSignIn = (e) => {
     e.preventDefault();
 
@@ -14,9 +19,16 @@ const Login = () => {
 
     signIn(email, password).then((result) => {
       console.log(result);
-      navigate("/");
+      navigate(from);
     });
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(from);
+    }
+  }, [navigate, from, user]);
+
   return (
     <div className="hero min-h-[500px] py-12 bg-[#F1D4CD] mt-6">
       <div className=" ">
@@ -53,7 +65,7 @@ const Login = () => {
           </form>
           <p className="text-center">
             Do Not Have an Account?{" "}
-            <Link to={"/register"} className="text-[#E57255] font-semibold ">
+            <Link to={"/sign-up"} className="text-[#E57255] font-semibold ">
               Register
             </Link>
           </p>

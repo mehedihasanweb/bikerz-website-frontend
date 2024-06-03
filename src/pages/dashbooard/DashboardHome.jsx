@@ -6,18 +6,18 @@ import toast from "react-hot-toast";
 const DashboardHome = () => {
   const [allNews, setAllNews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/bikes")
+    fetch("http://localhost:5000/bikes")
       .then((res) => res.json())
       .then((data) => setAllNews(data));
   }, []);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/bikes/${id}`, {
+    fetch(`http://localhost:5000/bikes/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then(() => {
-        const remaining = allNews?.filter((data) => data?.id !== id);
+        const remaining = allNews?.filter((data) => data?._id !== id);
         toast.success("Delete successfull");
 
         return setAllNews(remaining);

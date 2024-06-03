@@ -24,9 +24,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/see-details/:id",
-        element: <SingleNewsPage />,
+        element: (
+          <PrivateRoute>
+            <SingleNewsPage />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/bikes/${params.id}`),
+          fetch(`http://localhost:5000/bikes/${params.id}`),
       },
       {
         path: "/login",
@@ -39,7 +43,7 @@ export const router = createBrowserRouter([
       {
         path: "/our-shop",
         element: <OurShop />,
-        loader: () => fetch("http://localhost:3000/bikes"),
+        loader: () => fetch("http://localhost:5000/bikes"),
       },
     ],
   },
@@ -59,7 +63,7 @@ export const router = createBrowserRouter([
         path: "update-page/:id",
         element: <UpdatePage />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/bikes/${params.id}`),
+          fetch(`http://localhost:5000/bikes/${params.id}`),
       },
       {
         path: "add-page",
@@ -70,8 +74,10 @@ export const router = createBrowserRouter([
         element: <UserProfile />,
       },
       {
-        path: "user-profile/update-profile",
+        path: "user-profile/update-profile/:id",
         element: <UpdateProfile />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/user/get/${params.id}`),
       },
     ],
   },

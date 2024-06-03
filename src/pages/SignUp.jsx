@@ -1,10 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/socialLogin/SocialLogin";
 import useAuth from "../hooks/useAuth";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const { createUser } = useAuth();
+  const { user, createUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -14,12 +19,35 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(name, email, password);
     createUser(email, password).then((result) => {
-      console.log(result);
-      navigate("/");
+      // console.log(result?.user?.email);
+      const userInfo = {
+        name: name,
+        email: result?.user?.email,
+      };
+      fetch("http://localhost:5000/user", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            toast.success("Login Successfull");
+            navigate(from);
+          }
+        });
     });
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(from);
+    }
+  }, [navigate, from, user]);
+
   return (
     <div className="hero min-h-[600px] py-12 bg-[#F1D4CD] mt-6">
       <div className=" ">
@@ -35,7 +63,6 @@ const SignUp = () => {
                 name="name"
                 placeholder="Name"
                 className="input input-bordered"
-                required
               />
             </div>
             <div className="form-control pb-4">

@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 
 const DashboardSingleNews = ({ news, handleDelete }) => {
-  const { id, name, image_url, price, description } = news;
+  const { _id, name, image_url, price, description } = news;
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl mb-20">
       <figure>
@@ -15,19 +15,19 @@ const DashboardSingleNews = ({ news, handleDelete }) => {
         <p>{description}</p>
         <div className="card-actions justify-start">
           <Link
-            to={`/see-details/${id}`}
+            to={`/see-details/${_id}`}
             className="bg-[#E57255] px-4 py-2 font-semibold text-white rounded-md "
           >
             See Details
           </Link>
           <Link
-            to={`update-page/${id}`}
+            to={`update-page/${_id}`}
             className="bg-green-600 px-4 py-2 font-semibold text-white rounded-md "
           >
             Update
           </Link>
           <Link
-            onClick={() => handleDelete(id)}
+            onClick={() => handleDelete(_id)}
             className="bg-red-600 px-4 py-2 font-semibold text-white rounded-md "
           >
             Delete

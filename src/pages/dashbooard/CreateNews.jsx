@@ -13,7 +13,7 @@ const CreateNews = () => {
 
     const newsInfo = { name, currency, price, description, image_url };
 
-    fetch("http://localhost:3000/bikes", {
+    fetch("http://localhost:5000/bikes", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -23,6 +23,7 @@ const CreateNews = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        form.reset();
         toast.success("Created Successfull");
       });
   };
