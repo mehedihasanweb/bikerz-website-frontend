@@ -1,0 +1,84 @@
+{
+  "bikes": [
+    {
+      "id": "5",
+      "name": "Road Racer",
+      "description": "Lightweight and fast bike designed for road racing.",
+      "price": 1700,
+      "currency": "USD",
+      "image_url": "https://i.ibb.co/Dwq4VMJ/Project-Cover-1.png",
+      "specifications": {
+        "frame": "Carbon Fiber",
+        "suspension": "None",
+        "gears": 22,
+        "brakes": "Caliper",
+        "weight": "8kg"
+      },
+      "availability": "In Stock"
+    },
+    {
+      "id": "6",
+      "name": "Touring Trekker",
+      "description": "Durable and comfortable bike for long-distance touring.",
+      "price": 1400,
+      "currency": "USD",
+      "image_url": "https://i.ibb.co/4NXDgPM/Project-Cover.png",
+      "specifications": {
+        "frame": "Steel",
+        "suspension": "Front",
+        "gears": 27,
+        "brakes": "Hydraulic Disc",
+        "weight": "15kg"
+      },
+      "availability": "Out of Stock"
+    },
+    {
+      "id": "7",
+      "name": "Folding Flex",
+      "description": "Compact and portable folding bike perfect for commuters.",
+      "price": 900,
+      "currency": "USD",
+      "image_url": "https://i.ibb.co/7rtdJdS/Project-Cover-2.png",
+      "specifications": {
+        "frame": "Aluminum",
+        "suspension": "None",
+        "gears": 7,
+        "brakes": "V-Brakes",
+        "weight": "11kg"
+      },
+      "availability": "In Stock"
+    },
+    {
+      "id": "8",
+      "name": "BMX Bandit",
+      "description": "High-performance BMX bike for tricks and stunts.",
+      "price": 450,
+      "currency": "USD",
+      "image_url": "https://i.ibb.co/Dwq4VMJ/Project-Cover-1.png",
+      "specifications": {
+        "frame": "Chromoly",
+        "suspension": "None",
+        "gears": 1,
+        "brakes": "U-Brake",
+        "weight": "10kg"
+      },
+      "availability": "In Stock"
+    },
+    {
+      "id": "9",
+      "name": "Kids' Adventurer",
+      "description": "Safe and fun bike for young adventurers.",
+      "price": 300,
+      "currency": "USD",
+      "image_url": "https://i.ibb.co/Dwq4VMJ/Project-Cover-3.png",
+      "specifications": {
+        "frame": "Steel",
+        "suspension": "Front",
+        "gears": 6,
+        "brakes": "V-Brakes",
+        "weight": "9kg"
+      },
+      "availability": "In Stock"
+    }
+  ]
+}
