@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 
 const UserProfile = () => {
   const { user } = useAuth();
-  console.log(user);
+  // console.log(user);
   const [userInfo, setUserInfo] = useState();
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user?.email}`)
+    fetch(`https://bikerz-website-backend.vercel.app/user/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setUserInfo(data));
   }, [user]);
+
+  console.log(userInfo);
 
   return (
     <div>

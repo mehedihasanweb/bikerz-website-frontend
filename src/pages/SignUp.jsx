@@ -25,7 +25,7 @@ const SignUp = () => {
         name: name,
         email: result?.user?.email,
       };
-      fetch("http://localhost:5000/user", {
+      fetch("https://bikerz-website-backend.vercel.app/user", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -33,11 +33,9 @@ const SignUp = () => {
         body: JSON.stringify(userInfo),
       })
         .then((res) => res.json())
-        .then((data) => {
-          if (data.insertedId) {
-            toast.success("Login Successfull");
-            navigate(from);
-          }
+        .then(() => {
+          toast.success("Login Successfull");
+          navigate(from);
         });
     });
   };

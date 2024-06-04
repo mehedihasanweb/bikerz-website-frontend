@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router-dom";
 
 const UpdatePage = () => {
   const data = useLoaderData();
+  const token = localStorage.getItem("token");
 
   const { _id, name, currency, description, image_url, price } = data;
 
@@ -32,10 +33,11 @@ const UpdatePage = () => {
     };
     console.log(updateInfo);
 
-    fetch(`http://localhost:5000/bikes/${_id}`, {
+    fetch(`https://bikerz-website-backend.vercel.app/bikes/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(updateInfo),
     })

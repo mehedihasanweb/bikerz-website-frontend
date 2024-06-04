@@ -12,7 +12,7 @@ const SocialLogin = () => {
         name: result?.user?.displayName,
         email: result?.user?.email,
       };
-      fetch("http://localhost:5000/user", {
+      fetch("https://bikerz-website-backend.vercel.app/user", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -21,10 +21,10 @@ const SocialLogin = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.insertedId) {
-            toast.success("Login Successfull");
-            navigate("/");
-          }
+          console.log(data);
+          localStorage.setItem("token", data?.token);
+          toast.success("Login Successfull");
+          navigate("/");
         });
     });
   };

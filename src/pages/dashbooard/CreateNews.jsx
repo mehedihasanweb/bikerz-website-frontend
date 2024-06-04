@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 
 const CreateNews = () => {
+  const token = localStorage.getItem("token");
   const handleAddNews = (e) => {
     e.preventDefault();
 
@@ -13,10 +14,11 @@ const CreateNews = () => {
 
     const newsInfo = { name, currency, price, description, image_url };
 
-    fetch("http://localhost:5000/bikes", {
+    fetch("https://bikerz-website-backend.vercel.app/bikes", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(newsInfo),
     })

@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bikes/${params.id}`),
+          fetch(`https://bikerz-website-backend.vercel.app/bikes/${params.id}`),
       },
       {
         path: "/login",
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
       {
         path: "/our-shop",
         element: <OurShop />,
-        loader: () => fetch("http://localhost:5000/bikes"),
+        loader: () => fetch("https://bikerz-website-backend.vercel.app/bikes"),
       },
     ],
   },
@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
         path: "update-page/:id",
         element: <UpdatePage />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bikes/${params.id}`),
+          fetch(`https://bikerz-website-backend.vercel.app/bikes/${params.id}`),
       },
       {
         path: "add-page",
@@ -77,7 +77,9 @@ export const router = createBrowserRouter([
         path: "user-profile/update-profile/:id",
         element: <UpdateProfile />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/user/get/${params.id}`),
+          fetch(
+            `https://bikerz-website-backend.vercel.app/user/get/${params.id}`
+          ),
       },
     ],
   },

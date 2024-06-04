@@ -4,7 +4,8 @@ import { useLoaderData } from "react-router-dom";
 
 const UpdateProfile = () => {
   const user = useLoaderData();
-  console.log(user);
+  // console.log(user);
+  const token = localStorage.getItem("token");
 
   const [name, setName] = useState(user?.name);
   const handleUpdateProfile = (e) => {
@@ -19,10 +20,11 @@ const UpdateProfile = () => {
 
     const updatedInfo = { age, mobile, name };
 
-    fetch(`http://localhost:5000/user/${user?._id}`, {
+    fetch(`https://bikerz-website-backend.vercel.app/user/${user?._id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(updatedInfo),
     })

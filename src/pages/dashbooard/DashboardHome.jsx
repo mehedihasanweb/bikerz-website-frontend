@@ -1,27 +1,45 @@
 import { useEffect, useState } from "react";
 import DashboardSingleNews from "./DashboardSingleNews";
-import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const DashboardHome = () => {
   const [allNews, setAllNews] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredNews, setFilteredNews] = useState([]);
+
   useEffect(() => {
-    fetch("http://localhost:5000/bikes")
+    fetch("https://bikerz-website-backend.vercel.app/bikes")
       .then((res) => res.json())
-      .then((data) => setAllNews(data));
+      .then((data) => {
+        setAllNews(data);
+        setFilteredNews(data);
+      });
   }, []);
 
+  console.log(allNews);
+
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/bikes/${id}`, {
+    fetch(`https://bikerz-website-backend.vercel.app/bikes/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then(() => {
         const remaining = allNews?.filter((data) => data?._id !== id);
         toast.success("Delete successfull");
-
-        return setAllNews(remaining);
+        // console.log(remaining);
+        return setFilteredNews(remaining);
       });
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    const filtered = allNews.filter((news) =>
+      news.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredNews(filtered);
   };
 
   return (
@@ -33,15 +51,20 @@ const DashboardHome = () => {
           type="text"
           placeholder="Search"
           className="bg-gray-300 px-2 py-2 rounded-md w-1/2 border border-transparent focus:outline-none"
+          value={searchQuery}
+          onChange={handleSearchChange}
         />
-        <Link className="bg-[#E57255] px-3 py-2 rounded-md text-white font-semibold">
+        <button
+          onClick={handleSearchClick}
+          className="bg-[#E57255] px-3 py-2 rounded-md text-white font-semibold"
+        >
           Search
-        </Link>
+        </button>
       </div>
       <div className="flex flex-wrap gap-6 mt-20">
-        {allNews?.map((news) => (
+        {filteredNews?.map((news) => (
           <DashboardSingleNews
-            key={news.id}
+            key={news._id}
             news={news}
             handleDelete={handleDelete}
           />

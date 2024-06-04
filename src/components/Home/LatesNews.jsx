@@ -6,12 +6,11 @@ const LatesNews = () => {
   const [newses, setNewses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/bikes")
+    fetch("https://bikerz-website-backend.vercel.app/bikes")
       .then((res) => res.json())
       .then((data) => setNewses(data));
   }, []);
 
-  // console.log(newses);
   return (
     <div className="pt-20">
       <h2 className="text-3xl font-semibold text-center">Latest News</h2>

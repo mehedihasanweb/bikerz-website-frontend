@@ -8,7 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location?.from?.state?.pathname || "/";
+  const from = location?.state?.from?.pathname || "/";
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -17,10 +17,7 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    signIn(email, password).then((result) => {
-      console.log(result);
-      navigate(from);
-    });
+    signIn(email, password).then(() => {});
   };
 
   useEffect(() => {
