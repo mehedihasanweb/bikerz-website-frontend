@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 
 const CreateNews = () => {
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
   const handleAddNews = (e) => {
     e.preventDefault();
 
@@ -18,7 +18,7 @@ const CreateNews = () => {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(newsInfo),
     })

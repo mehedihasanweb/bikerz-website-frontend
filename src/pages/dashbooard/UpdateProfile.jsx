@@ -5,7 +5,7 @@ import { useLoaderData } from "react-router-dom";
 const UpdateProfile = () => {
   const user = useLoaderData();
   // console.log(user);
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   const [name, setName] = useState(user?.name);
   const handleUpdateProfile = (e) => {
@@ -24,7 +24,7 @@ const UpdateProfile = () => {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
-        authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(updatedInfo),
     })

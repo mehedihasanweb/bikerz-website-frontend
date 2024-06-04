@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 
 const UpdatePage = () => {
   const data = useLoaderData();
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   const { _id, name, currency, description, image_url, price } = data;
 
@@ -37,7 +37,7 @@ const UpdatePage = () => {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
-        authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(updateInfo),
     })

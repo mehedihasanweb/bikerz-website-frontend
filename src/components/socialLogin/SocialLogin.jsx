@@ -22,7 +22,7 @@ const SocialLogin = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          localStorage.setItem("token", data?.token);
+          // localStorage.setItem("token", data?.token);
           toast.success("Login Successfull");
           navigate("/");
         });
